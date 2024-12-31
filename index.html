@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Prediction</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #c5afa4; /* Background color */
+        }
+        .card {
+            background-color: #cc7e85; /* Form card color */
+            border: none; /* Remove default border */
+        }
+        .btn-submit {
+            background-color: #cf4d6f; /* Submit button color */
+            color: black;
+            border: none; /* Remove button border */
+        }
+        .btn-submit:hover {
+            background-color: #ffcccc; /* Button hover effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-header text-white text-center" style="background-color: #cf4d6f;">
+                        <h3>Revenue Prediction</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/predict" method="POST">
+                            <div class="mb-3">
+                                <label for="visits" class="form-label">Number of Visits</label>
+                                <input type="number" class="form-control" id="visits" name="visits" placeholder="Enter number of visits" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="orders" class="form-label">Number of Orders</label>
+                                <input type="number" class="form-control" id="orders" name="orders" placeholder="Enter number of orders" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-submit">Predict Revenue</button>
+                            </div>
+                        </form>
+
+                        {% if predicted_revenue %}
+                        <div class="mt-4">
+                            <h4>Predicted Revenue for {{ visits }} visits and {{ orders }} orders:</h4>
+                            <p><strong>${{ predicted_revenue | round(2) }}</strong></p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
